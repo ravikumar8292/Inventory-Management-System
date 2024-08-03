@@ -2,7 +2,7 @@ import React from "react";
 import qrhome from "../../image/scan-qr-code.webp";
 import { motion } from "framer-motion";
 
-const content = {
+const picContainer = {
   hidden: { opacity: 0, x: "-10vw" },
   show: {
     opacity: 1,
@@ -14,8 +14,7 @@ const content = {
   },
 };
 
-const picContainer = {
-  hidden: { opacity: 0, x: "10vw" },
+const content = {
   show: {
     opacity: 1,
     x: "0",
@@ -30,17 +29,17 @@ const Banner2 = () => {
   return (
     <div className="container mx-auto pl-14 py-[90px] flex gap-2">
       <motion.div
-        variants={content}
+        variants={picContainer}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
         className="ml-12"
       >
-        <img src={qrhome} alt="" srcset="" className="w-[1500px] h-[450px]" />
+        <img src={qrhome} alt="" srcset="" className="w-[1900px] h-[450px]" />
       </motion.div>
 
       <motion.div
-        variants={picContainer}
+        variants={content}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0 }}

@@ -1,11 +1,37 @@
 import React from "react";
 import homeqr from "../../image/qr-code-scanner-image.webp";
+import { motion } from "framer-motion";
+
+const content = {
+  show: {
+    opacity: 1,
+    x: "0",
+    
+  },
+};
+const picContainer = {
+  hidden: { opacity: 0, x: "10vw" },
+  show: {
+    opacity: 1,
+    x: "0",
+    transition: {
+      type: "spring",
+      delay: 0.2,
+    },
+  },
+};
 
 const Banner = () => {
+
   return (
-    <div className="container mx-auto pr-14 py-[90px] flex gap-2">
-     
-      <div className="mt-[130px] px-14 ml-[90px]">
+    <div className="container mx-auto pr-14 py-[90px] flex gap-2 relative top-0">
+      <motion.div
+        variants={content}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0 }}
+        className="mt-[130px] px-14 ml-[90px]"
+      >
         <h2 className="text-4xl font-bold">What is a QR code in an image?</h2>
         <br />
         <p>
@@ -18,10 +44,17 @@ const Banner = () => {
           business information too. You can encrypt information in a QR code and
           access it whenever required.
         </p>
-      </div>
-      <div className="ml-12">
-        <img src={homeqr} alt="" srcset="" className="w-[1500px] h-[450px]" />
-      </div>
+        </motion.div>
+        
+        <motion.div
+        variants={picContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0 }}
+        className="w-30vw h-30vh"
+      >
+        <img src={homeqr} alt="" srcset="" className="w-[1900px] h-[450px]" />
+      </motion.div>
     </div>
   );
 };

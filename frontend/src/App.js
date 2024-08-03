@@ -7,6 +7,8 @@ import Home from "./pages/home";
 import GenerateQr from "./pages/GenerateQr";
 import ScanQr from "./pages/ScanQr";
 import Product from "./pages/Product";
+import Register from "./components/User/Register";
+import Login from "./components/User/Login";
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
         <Route path="/generateQr" element={<GenerateQr />} />
         <Route path="/scanQr" element={<ScanQr />} />
         {/* <Route path='/course' element={authUser ? <Courses /> : <Navigate to="/signup" />}/> */}
-        {/* <Route path='/signup' element={<SignUp />}/> */}
+        <Route path='/login' element={<Login />}/>
+        <Route path='/register' element={<Register />}/>
       </Routes>
     </div>
   );

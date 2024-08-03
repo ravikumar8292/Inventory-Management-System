@@ -7,7 +7,7 @@ import Banner3 from "../components/Home/Banner3";
 
 const home = () => {
   return (
-    <div className="bg-[#E6E6E6]">
+    <div className="bg-[#E6E6E6] overflow-x-hidden">
       <Navbar />
       <Banner />
       <Banner2 />

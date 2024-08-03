@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import qricon from "../image/scan.png";
+import Register from "./User/Register";
 
 const Navbar = () => {
+
+  const [showModal, setShowModal] = useState(false);
+
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -23,7 +27,7 @@ const Navbar = () => {
     <div className="">
       <div
         className={`container mx-auto px-4 ${
-          theme === "dark" ? "bg-slate-900" : "bg-white text-black"
+          theme === "dark" ? "bg-slate-900 text-white" : "bg-white text-black"
         } h-[70px] text-white flex justify-between items-center`}
       >
         <div
@@ -95,9 +99,14 @@ const Navbar = () => {
           </div>
           <div className={`${theme === "dark" ? "text-white" : "text-black"}`}>
             {" "}
-            <a href="/login">Login</a> / <a href="/register">SingUp</a>{" "}
+            <a href="/login">Login</a> / <a  onClick={() => setShowModal(true)}>SingUp</a>{" "}
           </div>
         </div>
+      </div>
+      <div className="">
+        {
+          showModal && <Register setShowModal={setShowModal} showModal={showModal}/>
+        }
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import qrhome from "../../image/why-business-need-qr-code-scanner.webp";
 import { motion } from "framer-motion";
 
 const content = {
-  hidden: { opacity: 0, x: "-10vw" },
   show: {
     opacity: 1,
     x: "0",
@@ -28,13 +27,13 @@ const picContainer = {
 
 const Banner3 = () => {
   return (
-    <div className="container mx-auto pr-14 py-[90px] flex gap-2">
+    <div className="container mx-auto pr-14 py-[90px] flex gap-2 z-10">
       <motion.div
         variants={content}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0 }}
-        className="mt-[130px] pl-10 mr-14 ml-[90px] border"
+        className="mt-[130px] pl-10 mr-14 ml-[90px]"
       >
         <h2 className="text-4xl font-bold">
           Why do businesses use QR code image to fetch product/payment details?
