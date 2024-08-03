@@ -48,6 +48,11 @@ const Navbar = () => {
               </a>
             </li>
             <li>
+              <a href="/product" className={`hover:text-sky-700`}>
+                Product
+              </a>
+            </li>
+            <li>
               <a href="/generateQr" className={`hover:text-sky-700`}>
                 GenerateQr
               </a>
