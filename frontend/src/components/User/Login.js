@@ -1,124 +1,90 @@
-import React from "react";
-import { Link,useNavigate,useLocation } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import toast from "react-hot-toast";
-
-const Login = () => {
-
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = location.state?.from?.pathname || "/"
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+import React, { useState } from 'react'
+import Register from './Register';
+import { Link } from 'react-router-dom';
 
 
-    const onSubmit = async (data) => {
-      // console.log("data", data);
-      try {
-        const userInfo = {
-          email: data.email,
-          password: data.password,
-        };
+const Login = ({setLoginModal, setShowModal}) => {
+    
 
-        await axios.post("http://localhost:3000/user/login", userInfo);
-        // console.log("AFTER data", data);
-
-        if (data) {
-          toast.success('Login Successfully.');
-          // document.getElementById("my_model_3").close();
-          navigate(from, {replace:true});
-          setTimeout(()=>{
-            window.location.reload();
-          },2000)
-        }
-
-        const { email, password } = data;
-        const userData = {
-          email,
-          password,
-        };
-        localStorage.setItem("Users", JSON.stringify(userData));
-        console.log("userData", userData);
-
-      } catch (err) {
-        if (err.response) {
-          console.error(err);
-          toast.error("Error " + err.response.data.message);
-          setTimeout(()=>{});
-        } else {
-          console.error(err);
-          toast.error("An unexpected error occurred.");
-          setTimeout(()=>{});
-          
-        }
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+      });
+    
+      const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        // Add your form submission logic here
+        console.log(formData);
+      };
+    
+      const handleSignup = ()=>{
+        setLoginModal(false);
+        setShowModal(true);
       }
-    };
-  
 
-  return (
-    <div>
-      <dialog id="my_modal_3" className="modal">
-        <div className="modal-box bg-white dark:border dark:bg-slate-900">
-          <form onSubmit={handleSubmit(onSubmit)} method="dialog">
-            {/* if there is a button in form, it will close the modal */}
-            <Link
-              to={"/"}
-              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-              onClick={()=>document.getElementById("my_model_3").close()}
-            >
-              ✕
-            </Link>
+      return (
+        <>
+        <div className="fixed top-0 bottom-0 left-0 right-0 opacity-50 bg-[gray] "></div>
 
-            <h3 className="font-bold text-lg">Login</h3>
-            <div className="mt-4 space-y-2 flex flex-col">
-              <span>Email</span>
-              <input
-                type="email"
-                placeholder="enter email..."
-                {...register("email", { required: true })}
-                className="w-96 px-3 py-1 border rounded-md outline-none text-black"
-              />
-              {errors.email && (
-                <span className="text-red-500">This field is required*</span>
-              )}
-            </div>
-            <div className="mt-5 space-y-2 flex flex-col">
-              <span>Password</span>
-              <input
-                type="password"
-                placeholder="enter password..."
-                {...register("password", { required: true })}
-                className="w-96 px-3 py-1 border rounded-md outline-none text-black"
-              />
-              {errors.password && (
-                <span className="text-red-500">This field is required*</span>
-              )}
-            </div>
-            <div className="flex justify-between">
-              <Link to={"/"} className="px-4 pt-2 rounded-md mt-6 bg-pink-500 text-white text-md hover:bg-pink-600 duration-200"
-              onClick={handleSubmit(onSubmit)}>
+        <div className="fixed left-1/3 top-44 ml-12 z-10 flex items-center justify-center bg-gray-100">
+          <div className="bg-white py-8 px-14 rounded-lg shadow-md w-[800px] max-w-md relative">
+            <button type="button" className='absolute right-5 top-3 color-black text-xl' onClick={()=>setLoginModal(false)}>X</button>
+            <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+             
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  required
+                />
+              </div>
+              
+              <button
+                type="submit"
+                className="w-full py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
                 Login
-              </Link>
-              <p className="mt-12 mr-8">
-                Not registered?{" "}
-                <Link
-                  to={"/signup"}
-                  className="text-blue-500 underline cursor-pointer"
-                >
-                  SignUp
-                </Link>{" "}
-              </p>
-            </div>
-          </form>
+              </button>
+
+
+              <div className="text-center">
+                  register here!{" "}
+
+                  <Link className='text-[navy] font-bold' onClick={handleSignup}>register</Link>
+              </div>
+            </form>
+          </div>
         </div>
-      </dialog>
-    </div>
-  );
-};
+        </>
+      );
+    
+}
+
 
 export default Login;

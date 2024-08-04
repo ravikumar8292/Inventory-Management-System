@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import qricon from "../image/scan.png";
 import Register from "./User/Register";
+import Login from "./User/Login";
 
 const Navbar = () => {
 
   const [showModal, setShowModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -78,7 +80,7 @@ const Navbar = () => {
               {/* moon icon */}
               {theme === "dark" ? (
                 <svg
-                  className="swap-off fill-current w-7 h-7"
+                  className={`swap-off fill-current w-7 h-7 cursor-pointer`}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -87,7 +89,7 @@ const Navbar = () => {
                 </svg>
               ) : (
                 <svg
-                  className="swap-on fill-current w-7 h-7"
+                  className={`swap-off fill-current w-7 h-7 cursor-pointer  ${theme === "light" && "text-black"}`}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -99,13 +101,17 @@ const Navbar = () => {
           </div>
           <div className={`${theme === "dark" ? "text-white" : "text-black"}`}>
             {" "}
-            <a href="/login">Login</a> / <a  onClick={() => setShowModal(true)}>SingUp</a>{" "}
+            <a className="cursor-pointer" onClick={()=> setLoginModal(true)}>Login</a> / <a className="cursor-pointer" onClick={() => setShowModal(true)}>SingUp</a>{" "}
           </div>
         </div>
       </div>
       <div className="">
         {
-          showModal && <Register setShowModal={setShowModal} showModal={showModal}/>
+          showModal && <Register setShowModal={setShowModal} setLoginModal={setLoginModal}/>
+        }
+
+        {
+          loginModal && <Login setLoginModal={setLoginModal} setShowModal={setShowModal}/>
         }
       </div>
     </div>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import {Link} from 'react-router-dom'
 import Login from './Login';
 
 
-const Register = ({setShowModal, showModal}) => {
+const Register = ({setShowModal, setLoginModal}) => {
     
 
     const [formData, setFormData] = useState({
@@ -25,6 +26,11 @@ const Register = ({setShowModal, showModal}) => {
         // Add your form submission logic here
         console.log(formData);
       };
+
+      const handleLogin = ()=> {
+        setLoginModal(true);
+        setShowModal(false);
+      }
     
       return (
         <>
@@ -92,21 +98,12 @@ const Register = ({setShowModal, showModal}) => {
 
 
               {/* kam yahan se baki hai */}
-              <p className="text-center">
+              <div className="text-center">
                   have register!{" "}
-                  <button
-                    className="text-blue-500 underline cursor-pointer"
-                    onClick={() =>
-                      setShowModal(true)
-                    }
-                  >
-                    Login
-                  </button>{" "}
-                  <Login />
-                </p>
 
-
-
+                  <Link className='text-[navy] font-bold' onClick={handleLogin}>login</Link>
+              </div>
+              
             </form>
           </div>
         </div>
