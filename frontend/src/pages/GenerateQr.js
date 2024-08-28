@@ -5,7 +5,7 @@ import Generate from '../components/GenerateQr/Generate'
 
 const GenerateQr = () => {
   return (
-    <div>
+    <div className='bg-[#E6E6E6]'>
       <Navbar />
       <Generate />
       <Footer />

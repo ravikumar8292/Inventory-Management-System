@@ -49,22 +49,22 @@ const Navbar = () => {
             }`}
           >
             <li>
-              <a href="/" className={`hover:text-sky-700`}>
+              <a href="/" className={`hover:text-sky-700 font-semibold`}>
                 Home
               </a>
             </li>
             <li>
-              <a href="/product" className={`hover:text-sky-700`}>
+              <a href="/product" className={`hover:text-sky-700 font-semibold`}>
                 Product
               </a>
             </li>
             <li>
-              <a href="/generateQr" className={`hover:text-sky-700`}>
+              <a href="/generateQr" className={`hover:text-sky-700 font-semibold`}>
                 GenerateQr
               </a>
             </li>
             <li>
-              <a href="/scanQr" className={`hover:text-sky-700`}>
+              <a href="/scanQr" className={`hover:text-sky-700 font-semibold`}>
                 ScanQr
               </a>
             </li>
@@ -101,7 +101,7 @@ const Navbar = () => {
           </div>
           <div className={`${theme === "dark" ? "text-white" : "text-black"}`}>
             {" "}
-            <a className="cursor-pointer" onClick={()=> setLoginModal(true)}>Login</a> / <a className="cursor-pointer" onClick={() => setShowModal(true)}>SingUp</a>{" "}
+            <a className="cursor-pointer font-semibold" onClick={()=> setLoginModal(true)}>Login</a> / <a className="cursor-pointer font-semibold" onClick={() => setShowModal(true)}>SingUp</a>{" "}
           </div>
         </div>
       </div>

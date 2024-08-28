@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 
 const ScanQr = () => {
   return (
-    <div>
+    <div className='bg-[#E6E6E6]'>
       <Navbar />
       <Scan />
       <Footer />
